@@ -1,4 +1,4 @@
-package com.example.dngrocery.Screen;
+package com.example.dngrocery.screen;
 
 import android.os.Bundle;
 
