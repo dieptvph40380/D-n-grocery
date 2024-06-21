@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/loginbackground"
-    tools:context=".screen.Login_and_Register">
+    tools:context=".login_screen.Login_and_Register">
 
     <TextView
         android:text="Food Loveres"

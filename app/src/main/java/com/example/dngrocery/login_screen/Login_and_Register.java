@@ -1,11 +1,10 @@
-package com.example.dngrocery.screen;
+package com.example.dngrocery.login_screen;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.textservice.TextInfo;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,9 +15,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.dngrocery.MainActivity;
 import com.example.dngrocery.R;
@@ -66,11 +62,11 @@ public class Login_and_Register extends AppCompatActivity {
         firebaseAuth=FirebaseAuth.getInstance();
 
 
-
+        ///Sự kiện text signUp
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                layout_register();
 
                 btn_SingIn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -94,7 +90,7 @@ public class Login_and_Register extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
                                     Toast.makeText(getApplicationContext(),"Đăng ký thành công",Toast.LENGTH_SHORT).show();
-                                    login();
+                                    layout_login();
                                     emails.setText("");
                                     passwords.setText("");
 
@@ -112,12 +108,15 @@ public class Login_and_Register extends AppCompatActivity {
             }
         });
 
+        ///Sự kiện text logIn
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                layout_login();
             }
         });
+
+        ///Sự Kiện button Login
         btn_logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +143,7 @@ public class Login_and_Register extends AppCompatActivity {
             }
         });
 
+        ////Quên MK
         ForgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,9 +166,18 @@ public class Login_and_Register extends AppCompatActivity {
             }
         });
 
-    }
+        ///Sự kiện OTP
+        imgotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Login_OTP.class));
+                finish();
+            }
+        });
 
-    public void login(){
+    }
+    ///Layout login register
+    public void layout_login(){
         signUp.setBackground(null);
         signUp.setTextColor(getResources().getColor(R.color.pinkColor, null));
         logIn.setBackground(getResources().getDrawable(R.drawable.switch_trcks, null));
@@ -178,7 +187,7 @@ public class Login_and_Register extends AppCompatActivity {
         btn_logIn.setVisibility(View.VISIBLE);
         btn_SingIn.setVisibility(View.GONE);
     }
-    public void register(){
+    public void layout_register(){
         signUp.setBackground(getResources().getDrawable(R.drawable.switch_trcks, null));
         signUp.setTextColor(getResources().getColor(R.color.textColor, null));
         logIn.setBackground(null);

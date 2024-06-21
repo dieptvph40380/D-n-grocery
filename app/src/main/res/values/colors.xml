@@ -5,4 +5,9 @@
     <color name="textColor">#ECE5EC</color>
     <color name="pinkColor">#FF003B</color>
     <color name="tansparentColor">#00FFFFFF</color>
+    <color name="my_primary">#FF5964</color>
+    <color name="my_secondary">#FFE74C</color>
+    <color name="off_white">#DFDFDF</color>
+    <color name="light_gray">#C3C3C3</color>
+
 </resources>
