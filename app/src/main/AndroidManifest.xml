@@ -15,7 +15,13 @@
         android:theme="@style/Theme.DựÁnGrocery"
         tools:targetApi="31">
         <activity
+            android:name=".login_screen.Home"
+            android:exported="false" />
+        <activity
             android:name=".login_screen.Login_OTP3"
+            android:exported="false" />
+        <activity
+            android:name=".login_screen.Login_OTP2"
             android:exported="false" />
         <activity
             android:name=".login_screen.Login_OTP"

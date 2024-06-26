@@ -76,6 +76,7 @@ public class Login_and_Register extends AppCompatActivity {
 
                         if (TextUtils.isEmpty(emal)) {
                             // Xử lý trường hợp email rỗng
+                            emails.setError("Email ko đc để trống");
                             Toast.makeText(getApplicationContext(), "Email không được để trống", Toast.LENGTH_SHORT).show();
                             return;
                         }
