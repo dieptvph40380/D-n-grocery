@@ -176,6 +176,19 @@ public class Login_and_Register extends AppCompatActivity {
             }
         });
 
+        img_fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Login_and_Register.this, "Tính năng hiện đang cập nhật", Toast.LENGTH_SHORT).show();
+            }
+        });
+        img_gg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Login_and_Register.this, "Tính năng hiện đang cập nhật", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
     ///Layout login register
     public void layout_login(){

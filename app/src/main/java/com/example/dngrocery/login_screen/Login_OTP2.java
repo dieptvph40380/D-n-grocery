@@ -3,6 +3,7 @@ package com.example.dngrocery.login_screen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,6 +44,7 @@ public class Login_OTP2 extends AppCompatActivity {
     String verificationCode;
     PhoneAuthProvider.ForceResendingToken resendingToken;
     FirebaseAuth firebaseAuth;
+    private PhoneAuthCredential autoRetrievedCredential;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +68,13 @@ public class Login_OTP2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String enteredOTP= otpInput.getText().toString();
-                PhoneAuthCredential credential= PhoneAuthProvider.getCredential(verificationCode,enteredOTP);
-                setInprogress(true);
-                signIn(credential);
+                if (verificationCode != null && !verificationCode.isEmpty()) {
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, enteredOTP);
+                    setInprogress(true);
+                    signIn(credential);
+                } else {
+                    Toast.makeText(Login_OTP2.this, "Vui lòng đợi mã xác minh được gửi", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -94,7 +100,7 @@ public class Login_OTP2 extends AppCompatActivity {
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                signIn(phoneAuthCredential);
+                                Log.d("Login_OTP2", "onVerificationCompleted triggered");
                                 setInprogress(false);
                             }
 
@@ -114,7 +120,12 @@ public class Login_OTP2 extends AppCompatActivity {
                             }
                         });
         if(isResend){
-            PhoneAuthProvider.verifyPhoneNumber(builder.setForceResendingToken(resendingToken).build());
+            if (resendingToken != null) {
+                PhoneAuthProvider.verifyPhoneNumber(builder.setForceResendingToken(resendingToken).build());
+            } else {
+                Toast.makeText(Login_OTP2.this, "Token hết hạn, vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+                setInprogress(false);
+            }
         }else {
             PhoneAuthProvider.verifyPhoneNumber(builder.build());
         }
@@ -135,14 +146,18 @@ public class Login_OTP2 extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 setInprogress(false);
-                if(task.isSuccessful()){
-                    Intent intent=new Intent(Login_OTP2.this, Login_OTP3.class);
-                    intent.putExtra("phone",phoneNumber);
-                    Toast.makeText(Login_OTP2.this, "đúng OTP", Toast.LENGTH_SHORT).show();
+                if (task.isSuccessful()) {
+                    // Đăng nhập thành công
+                    Intent intent = new Intent(Login_OTP2.this, Login_OTP3.class);
+                    intent.putExtra("phone", phoneNumber);
+                    Toast.makeText(Login_OTP2.this, "Đúng OTP", Toast.LENGTH_SHORT).show();
                     startActivity(intent);
-
-                }else {
-                    Toast.makeText(Login_OTP2.this, "sai OTP", Toast.LENGTH_SHORT).show();
+                    finish(); // Kết thúc hoạt động hiện tại
+                } else {
+                    // Đăng nhập thất bại
+                    Toast.makeText(Login_OTP2.this, "Sai OTP", Toast.LENGTH_SHORT).show();
+//                    String errorMessage = "Sự cố đăng nhập: " + (task.getException() != null ? task.getException().getMessage() : "Không xác định");
+//                    Toast.makeText(Login_OTP2.this, errorMessage, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -150,7 +165,7 @@ public class Login_OTP2 extends AppCompatActivity {
 
     public void startResendTimer() {
         resendTv.setEnabled(false);
-        timout = 30L; // Khởi tạo lại biến timout nếu cần thiết
+        timout = 60L; // Khởi tạo lại biến timout nếu cần thiết
         new CountDownTimer(timout * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -170,6 +185,7 @@ public class Login_OTP2 extends AppCompatActivity {
                     @Override
                     public void run() {
                         resendTv.setText("Resend OTP ");
+                        resendTv.setEnabled(true);
                     }
                 });
             }
