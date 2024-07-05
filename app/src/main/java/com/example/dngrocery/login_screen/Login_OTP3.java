@@ -44,6 +44,7 @@ public class Login_OTP3 extends AppCompatActivity {
         phoneNumber = getIntent().getExtras().getString("phone");
         getUserName();
 
+        setInPRogress(false);
         letMeInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +59,7 @@ public class Login_OTP3 extends AppCompatActivity {
         String username = usernameInput.getText().toString();
         if (username.isEmpty() || username.length() < 3) {
             usernameInput.setError("Không được để trống");
+            setInPRogress(true);
             return;
         }
         if (userModel!=null){
