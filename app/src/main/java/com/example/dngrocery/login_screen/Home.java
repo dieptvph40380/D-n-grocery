@@ -1,5 +1,6 @@
 package com.example.dngrocery.login_screen;
 
+import android.app.Person;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -9,9 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.dngrocery.R;
+import com.example.dngrocery.fragment.Bookmark_Fragment;
+import com.example.dngrocery.fragment.Home_Fragment;
+import com.example.dngrocery.fragment.Noti_Fragment;
+import com.example.dngrocery.fragment.Profile_Fragment;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -23,6 +31,7 @@ public class Home extends AppCompatActivity {
 
     protected  final int notification=3;
     protected  final int person=4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +49,26 @@ public class Home extends AppCompatActivity {
         bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
             @Override
             public Unit invoke(MeowBottomNavigation.Model model) {
-                Toast.makeText(Home.this, "Item Click", Toast.LENGTH_SHORT).show();
+                Fragment fragment = null;
+                switch (model.getId()){
+                    case home:
+                        fragment =new Home_Fragment();
+                        loadFragment(fragment);
+                        break;
+                    case bookmark:
+                        fragment =new Bookmark_Fragment();
+                        loadFragment(fragment);
+                        break;
+
+                    case notification:
+                        fragment =new Noti_Fragment();
+                        loadFragment(fragment);
+                        break;
+                    case person:
+                        fragment =new Profile_Fragment();
+                        loadFragment(fragment);
+                        break;
+                }
                 return null;
             }
         });
@@ -49,27 +77,39 @@ public class Home extends AppCompatActivity {
             public Unit invoke(MeowBottomNavigation.Model model) {
                 String name;
                 switch (model.getId()){
-                    case home: name="Home";
-                        Intent intent=new Intent(Home.this, Home.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+                    case home:
+
+
                             break;
-                    case bookmark: name="Bookmark";
-                        Intent intent1=new Intent(Home.this, Home.class);
-                        intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent1);
+                    case bookmark:
+
+
                         break;
 
-                    case notification: name="Notification";
+                    case notification:
+
+
                         break;
-                    case person: name="Dash";
-                        Intent inten1t=new Intent(Home.this, Wellcome.class);
-                        startActivity(inten1t);
+                    case person:
+
+
                         break;
                 }
-                bottomNavigation.setCount(notification,"9");
                 return null;
             }
         });
+        // Hiển thị Fragment mặc định khi ứng dụng khởi động
+        if (savedInstanceState == null) {
+            bottomNavigation.show(home, true);  // Hiển thị mục Home là mục được chọn
+            loadFragment(new Home_Fragment());  // Hiển thị HomeFragment mặc định
+        }
+
     }
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }
