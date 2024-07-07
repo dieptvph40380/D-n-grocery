@@ -9,5 +9,6 @@
     <color name="my_secondary">#FFE74C</color>
     <color name="off_white">#DFDFDF</color>
     <color name="light_gray">#C3C3C3</color>
+    <color name="semi_transparent_background">#80FFFFFF</color> <!-- Màu trắng bán trong suốt -->
 
 </resources>
