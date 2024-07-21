@@ -3,17 +3,19 @@
     android:id="@+id/tesst"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    >
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="175dp"
-        android:layout_height="225dp"
-        android:src=""
+        android:id="@+id/img_sp"
+        android:layout_width="143dp"
+        android:layout_height="190dp"
         android:background="@drawable/rounded_image"
-        android:scaleType="centerCrop"
+
         android:clipToOutline="true"/>
         <FrameLayout
             android:layout_width="wrap_content"
@@ -22,7 +24,6 @@
             android:background="@drawable/rounded_favourite"
             android:padding="12dp"
             android:layout_margin="15dp">
-
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -33,18 +34,23 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/tv_tensp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Black Simple Lamp"
         android:layout_marginTop="5dp"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <TextView
+        android:id="@+id/tv_giasp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="$ 12.00"
         android:textStyle="bold"
         android:layout_marginTop="5dp"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
 
 </LinearLayout>

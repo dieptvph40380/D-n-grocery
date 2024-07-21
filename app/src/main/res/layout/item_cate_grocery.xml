@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:id="@+id/tesst"
     android:gravity="center"
+    android:layout_marginRight="20dp"
     > <!-- Thêm padding nếu cần -->
 
     <FrameLayout
@@ -14,14 +15,16 @@
         android:background="@drawable/rounded_background1"
         android:padding="12dp"> <!-- Thêm padding nếu cần -->
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/anhloai"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/bi_cart"/>
     </FrameLayout>
     <TextView
+        android:id="@+id/tenloai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="10sp"
         android:text="Popular" />
 
 </LinearLayout>
