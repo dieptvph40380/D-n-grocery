@@ -1,7 +1,7 @@
-package com.example.dngrocery.recyclerview;
+package com.example.dngrocery.custom;
 import android.graphics.Rect;
 import android.view.View;
-import androidx.recyclerview.widget.GridLayoutManager;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 public class GridSpacingItemDecorationRC extends RecyclerView.ItemDecoration {

@@ -1,6 +1,5 @@
 package com.example.dngrocery.fragment;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -9,23 +8,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.dngrocery.R;
 import com.example.dngrocery.adapter.Cate_Grocery_Adapter;
 import com.example.dngrocery.adapter.Grocery_Adapter;
 import com.example.dngrocery.model.Cate_Grocery_model;
 import com.example.dngrocery.model.Grocery_model;
-import com.example.dngrocery.recyclerview.GridSpacingItemDecorationRC;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
