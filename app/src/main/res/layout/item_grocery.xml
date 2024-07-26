@@ -4,19 +4,20 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="20dp"
-    >
+    android:layout_margin="15dp">
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/img_sp"
-        android:layout_width="143dp"
-        android:layout_height="190dp"
-        android:background="@drawable/rounded_image"
 
-        android:clipToOutline="true"/>
+        <com.example.dngrocery.custom.RounderItemGrocery
+            android:id="@+id/img_sp"
+            android:layout_width="143dp"
+            android:layout_height="190dp"
+            android:src="@drawable/background"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop" />
+
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,12 +25,12 @@
             android:background="@drawable/rounded_favourite"
             android:padding="12dp"
             android:layout_margin="15dp">
+
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/favourite"
-                android:layout_gravity="center"
-                />
+                android:layout_gravity="center"/>
         </FrameLayout>
     </FrameLayout>
 
@@ -49,8 +50,8 @@
         android:textStyle="bold"
         android:layout_marginTop="5dp"
         android:textSize="15sp" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="16dp"/>
-
 </LinearLayout>

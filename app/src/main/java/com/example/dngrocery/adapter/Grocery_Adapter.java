@@ -58,17 +58,25 @@ public class Grocery_Adapter extends RecyclerView.Adapter<Grocery_Adapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull Grocery_Adapter.ViewHolder holder, int position) {
-        Glide.with(context).load(list.get(position).getAnhsp()).into(holder.imgsp);
-        holder.tensp.setText(list.get(position).getTensp());
-        holder.giasp.setText(list.get(position).getGia());
+        Grocery_model Grocery=list.get(position);
+        Glide.with(context).load(Grocery.getAnhsp()).into(holder.imgsp);
+        holder.tensp.setText(Grocery.getTensp());
+        holder.giasp.setText(Grocery.getGia());
 
         holder.imgsp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context,Detai_Grocery.class));
-
+//                context.startActivity(new Intent(context,Detai_Grocery.class));
+                Intent intent=new Intent(view.getContext(), Detai_Grocery.class);
+                intent.putExtra("image",Grocery.getAnhsp());
+                intent.putExtra("tensp",Grocery.getTensp());
+                intent.putExtra("giasp",Grocery.getGia());
+                intent.putExtra("motasp",Grocery.getMota());
+                intent.putExtra("tenloai",Grocery.getTenloai());
+                view.getContext().startActivity(intent);
             }
         });
+
     }
 
     @Override
